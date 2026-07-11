@@ -11,7 +11,7 @@ public:
   
 //    }
 //         return -1;
-    int s=1,e=nums.size()-1;
+    int s=0,e=nums.size()-1;
     int ans=-1;
     while(s<=e){
         int mid=s+(e-s)/2;
