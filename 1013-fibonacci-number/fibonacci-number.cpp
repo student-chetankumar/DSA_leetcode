@@ -1,11 +1,6 @@
 class Solution {
 public:
-int topdown(int n){
-    if( n==0 || n==1 ) return n;
-    
-    int ans =  topdown(n-1)+topdown(n-2);
-    return ans;
-}
+
     int fib(int n) {
     //     int a=0,b=1;
     //     int ans;
@@ -19,7 +14,9 @@ int topdown(int n){
     // return ans;
     // // return fib(n-1)+fib(n-2);
     // vector<int>dp(n+1,-1);
-    int ans = topdown(n);
+    if( n==0 || n==1 ) return n;
+    
+    int ans =  fib(n-1)+fib(n-2);
     return ans;
     }
 };
