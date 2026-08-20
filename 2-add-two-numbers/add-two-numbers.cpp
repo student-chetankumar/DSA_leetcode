@@ -10,29 +10,51 @@
  */
 class Solution {
 public:
+ListNode* iterator(ListNode* l1, ListNode* l2) {
+    ListNode* ans= new ListNode(-1);
+    ListNode* it= ans;
+    int c=0;
+    while(l1 || l2 || c){
+        int a = l1 ? l1->val : 0 ;
+        int b = l2 ? l2->val : 0 ;
+        int sum = a+b+c;
+        int digit=sum%10;
+        c=sum/10;
 
+        // store the digit in the ans LL
+        it->next = new ListNode(digit);
+        it=it->next;
+        l1 = l1 ? l1->next : 0;
+        l2 = l2 ? l2->next : 0;
+
+    }
+    return ans->next;
+
+}
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* dummy = new ListNode(0);
-        ListNode* curr=dummy;
+        // ListNode* dummy = new ListNode(0);
+        // ListNode* curr=dummy;
 
-        int carry=0;
-        while(l1!=NULL || l2!=NULL || carry!=0){
-            int sum=carry;
-            if(l1!=NULL){
-                sum+=l1->val;
-                l1=l1->next;
-            }
+        // int carry=0;
+        // while(l1!=NULL || l2!=NULL || carry!=0){
+        //     int sum=carry;
+        //     if(l1!=NULL){
+        //         sum+=l1->val;
+        //         l1=l1->next;
+        //     }
 
-            if(l2!=NULL){
-                sum+=l2->val;
-                l2=l2->next;
-            }
+        //     if(l2!=NULL){
+        //         sum+=l2->val;
+        //         l2=l2->next;
+        //     }
 
-            curr->next=new ListNode(sum%10);
-            carry=sum/10;
+        //     curr->next=new ListNode(sum%10);
+        //     carry=sum/10;
 
-            curr=curr->next;
-        }
-        return dummy->next;
+        //     curr=curr->next;
+        // }
+        // return dummy->next;
+
+        return iterator(l1,l2);
     }
 };
