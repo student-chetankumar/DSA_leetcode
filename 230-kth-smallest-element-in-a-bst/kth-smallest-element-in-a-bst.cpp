@@ -11,20 +11,18 @@
  */
 class Solution {
 public:
-int solve(TreeNode* root,int &i,int k){
+void solve(TreeNode* root,int &count,int k,TreeNode* &ans){
     if(root==NULL)
-     return -1;
+     return ;
     
-    int left=solve(root->left,i,k);
-    if(left != -1){
-        return left;
-    }
-    i++;
-    if(i==k){
-        return root->val;
+    solve(root->left,count,k,ans);
+    
+    count++;
+    if(count==k){
+        ans =  root;
     }
 
-    return solve(root->right,i,k);
+     solve(root->right,count,k , ans);
 }
 void inorder(TreeNode* root, vector<int>&v){
     if(root==NULL){
@@ -39,7 +37,9 @@ void inorder(TreeNode* root, vector<int>&v){
     //  inorder(root,ans);
     //  return ans[k-1];
     int count=0;
-    return solve(root,count,k);
+    TreeNode* ans = NULL;
+    solve(root,count,k ,ans);
+    return ans->val;
 
     }
 };
