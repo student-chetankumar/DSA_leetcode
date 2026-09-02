@@ -35,9 +35,11 @@ void inorder(TreeNode* root, vector<int>&v){
     inorder(root->right,v);
 }
     int kthSmallest(TreeNode* root, int k) {
-     vector<int>ans;
-     inorder(root,ans);
-     return ans[k-1];
+    //  vector<int>ans;
+    //  inorder(root,ans);
+    //  return ans[k-1];
+    int count=0;
+    return solve(root,count,k);
 
     }
 };
