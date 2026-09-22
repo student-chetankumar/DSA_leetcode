@@ -2,9 +2,9 @@ class compare{
     public:
       bool operator()(string a, string b) {
         if(a.size() != b.size())
-            return a.size() < b.size();
+            return a.size() > b.size();
 
-        return a < b;
+        return a > b;
     }
 };
 
@@ -17,11 +17,13 @@ public:
         
         for(auto x:nums){
             pq.push(x);
+
+            if (pq.size() > k) {
+                pq.pop();
+            }
         }
 
-        for(int i=1;i<k;i++){
-            pq.pop();
-        }
+        
 
         return pq.top();
     }
