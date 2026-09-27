@@ -14,7 +14,7 @@ int solveUsingTabulation(vector<int>& arr ){
     int n=arr.size();
     
     vector<int>dp(n+1,-1);
-    // base case
+    // base case and fill dp array
     dp[n]=0;
 
     for(int i=n-1;i>=0;i--){
@@ -27,15 +27,39 @@ int solveUsingTabulation(vector<int>& arr ){
         int ans = max(steal,skip);
         dp[i]=ans;
     }
-
     return dp[0];
 }
+
+
+int spaceOptimization(vector<int>arr){
+    int n = arr.size();
+    int next1=0;
+    int next2=0;
+    int curr;
+    for(int i=n-1;i>=0;i--){
+        int temp=0;
+        if(i+2<=n){
+            temp = next2;
+        }
+        int steal = arr[i]+temp;
+        int skip  = 0+ next1;
+        curr = max(steal,skip);
+        next2=next1;
+        next1=curr;
+    }
+
+    return curr;
+}
+
+
     int rob(vector<int>& nums) {
         // int n=nums.size();
         // int dp[n];
         // fill(dp,dp+n,-1);
         // return maxloot(nums,0,dp);
-        int ans = solveUsingTabulation(nums);
+        // int ans = solveUsingTabulation(nums);
+        // return ans;
+        int ans = spaceOptimization(nums);
         return ans;
     }
 };
