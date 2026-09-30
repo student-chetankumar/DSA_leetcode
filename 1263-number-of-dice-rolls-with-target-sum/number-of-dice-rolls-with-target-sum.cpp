@@ -83,8 +83,8 @@ int solveUsingTabulation(int n, int k, int target) {
 }
     int numRollsToTarget(int n, int k, int target) {
         
-        // vector<vector<int>>dp(n+1,vector<long long>(target+1,-1));
-        int ans = solveUsingTabulation(n,k,target);
+        vector<vector<int>>dp(n+1,vector<int>(target+1,-1));
+        int ans = solveUsingMem(n,k,target,dp);
         return ans;
     }
 };
