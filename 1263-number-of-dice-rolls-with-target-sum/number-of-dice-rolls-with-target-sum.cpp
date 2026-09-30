@@ -49,10 +49,42 @@ int solveUsingMem(int n, int k ,int target,vector<vector<int>>&dp){
 
     return dp[n][target];
 }
+
+
+int solveUsingTabulation(int n, int k, int target) {
+    int mod = 1000000007;
+
+    vector<vector<long long int>> dp(
+        n + 1,
+        vector<long long int>(target + 1, 0)
+    );
+
+    dp[0][0] = 1;
+
+    // Reverse flow
+    for(int a = 1; a <= n; a++) {
+
+        for(int t = 0; t <= target; t++) {
+
+            long long int ans = 0;
+
+            for(int val = 1; val <= k; val++) {
+
+                if(t - val >= 0) {
+                    ans = (ans + dp[a - 1][t - val]) % mod;
+                }
+            }
+
+            dp[a][t] = ans;
+        }
+    }
+
+    return dp[n][target];
+}
     int numRollsToTarget(int n, int k, int target) {
         
-        vector<vector<int>>dp(n+1,vector<int>(target+1,-1));
-        int ans = solveUsingMem(n,k,target,dp);
+        // vector<vector<int>>dp(n+1,vector<long long>(target+1,-1));
+        int ans = solveUsingTabulation(n,k,target);
         return ans;
     }
 };
