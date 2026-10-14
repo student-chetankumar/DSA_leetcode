@@ -4,11 +4,10 @@ public:
         vector<int>ans;
         unordered_map<int,int>mp;
         int n=nums.size();
-        for(int i=0;i<n;i++){
-            unordered_set<int>st(nums[i].begin(),nums[i].end());
-
-            for(int x:st){
-                mp[x]++;
+        
+        for(int i=0; i<n; i++){
+            for(int j=0; j<nums[i].size(); j++){
+                mp[nums[i][j]]++;
             }
         }
 
